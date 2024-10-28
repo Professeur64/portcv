@@ -69,6 +69,10 @@
                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum porro, ex adipisci velit explicabo tempore veniam molestias, ratione quis, maiores possimus vero?</p>
                             </div>
 
+                            <!-- butten video -->
+                            <div class="btn-video"><button><i class="fa fa-play"></i>Show Video</button></div>
+                            <!-- butten video -->
+
                             <div class="workeduc-content">
                                 <span class="year"><i class='bx bxs-calendar' ></i>2021 - 2022</span>
                                 <h3>Contrôle de la Qualité - Groupe PSA</h3>
@@ -78,8 +82,9 @@
                             <div class="workeduc-content">
                                 <span class="year"><i class='bx bxs-calendar' ></i>2022 - 2023</span>
                                 <h3>Stage assistant technicien - OCP</h3>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum porro, ex adipisci velit explicabo tempore veniam molestias, ratione quis, maiores possimus vero?</p>
+                                <p>Lorem ipsum dolor sit amet ex adipisci velit explicabo ratione quis, maiores possimus vero?</p>
                             </div>
+
                         </div>
 
                         <span class="number-page">1</span>
@@ -97,6 +102,35 @@
         </div>
 
 
+
+<!-- butten videio -->
+<div class="trailer">
+    <video src="dekra.mp4" controls="true"></video>
+    <span class="close">&times;</span>
+
+</div>
+
+
+<script>
+    const button = document.querySelector("button");
+    const close = document.querySelector(".close");
+    const trailer = document.querySelector(".trailer");
+    const video = document.querySelector("video");
+
+    button.addEventListener('click', ()=>{
+        trailer.style.visibility = "visible";
+        trailer.style.opacity = 1;
+    });
+
+    close.addEventListener('click', ()=>{
+        trailer.style.visibility = "hidden";
+        trailer.style.opacity = 0;
+
+        video.pause();
+        video.currentTime = 0;
+    });
+</script>
+<!-- butten videio -->
 
         <script src="script.js"> </script>
 

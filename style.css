@@ -8,6 +8,9 @@
     border: none;
     outline: none;
     font-family: "Poppins", sans-serif;
+
+
+    transition: .3s;
 }
 
 :root{
@@ -220,7 +223,7 @@ body{
 .workedu-box .workeduc-content{
     position: relative;
     padding-left: 1.6rem;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1rem;
 }
 
 .workedu-box .workeduc-content::before {
@@ -253,6 +256,75 @@ body{
     
 }
 
+/* butten videioة */
+.btn-video{
+    
+    margin-bottom: 1rem;
+}
+
+button{
+    margin: 5px ;
+    width: 100%;
+    padding: 10px;
+    border: var(--main-color);
+    cursor: pointer;
+    background: var(--main-color);
+    border: var(--border);
+    border-radius: .3rem;
+    font-size: 1rem;
+    color: var(--white-color);
+    font-weight: 500;
+    margin: 0 1rem;
+    transition: .5s;
+}
+
+button:hover{
+    background: white;
+    color: var(--main-color);
+    
+}
+
+.trailer{
+    position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: rgba(0,0,0,.9);
+	z-index: 10;
+	visibility: hidden;
+	opacity: 0;
+}
+
+.trailer video{
+	max-width: 430px;
+	outline: none;
+	position: relative;
+}
+
+.close{
+	position: absolute;
+	top: 30px;
+	right: 30px;
+	color: #fff;
+	font-size: 42px;
+	cursor: pointer;
+}
+
+@media (max-width: 901px){
+	.trailer video{
+		max-width: 90%;
+	}
+}
+
+/* butten videioة */
+
+
+
 
 
 
@@ -261,14 +333,15 @@ body{
     .wrapper {
         display: none;
     }
+
     .mobile-message {
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh; /* تجعل البطاقة في منتصف الشاشة */
+        height: 100vh; /* يجعل البطاقة في منتصف الشاشة */
         
     }
-    
+
     .message-card {
         background-color: #fff;
         padding: 20px 30px;
@@ -276,17 +349,32 @@ body{
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         text-align: center;
         max-width: 300px;
+        opacity: 0; /* يبدأ غير مرئي */
+        transform: scale(0.8); /* يبدأ صغير الحجم */
+        animation: fadeInScale 0.5s forwards; /* تفعيل الأنيميشن */
     }
-    
+
     .message-card h2 {
         font-size: 1.5em;
         color: #333;
         margin: 0 0 10px;
     }
-    
+
     .message-card p {
         font-size: 1em;
         color: #666;
+    }
+
+    /* أنيميشن fadeInScale */
+    @keyframes fadeInScale {
+        0% {
+            opacity: 0;
+            transform: scale(0.8);
+        }
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
     }
 }
 
@@ -296,3 +384,4 @@ body{
         display: none;
     }
 }
+
