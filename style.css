@@ -252,3 +252,21 @@ body{
     transform: translateX(-50%);
     
 }
+
+/* إخفاء المحتوى على الشاشات الصغيرة */
+@media (max-width: 1020px) {
+    body {
+        display: none;
+    }
+    .mobile-message {
+        display: block;
+        text-align: center;
+        padding: 20px;
+        font-size: 1.2em;
+    }
+}
+
+/* إظهار الرسالة فقط على الشاشات الصغيرة */
+.mobile-message {
+    display: none;
+}
