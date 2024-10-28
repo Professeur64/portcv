@@ -253,20 +253,23 @@ body{
     
 }
 
-/* إخفاء المحتوى على الشاشات الصغيرة */
+/* إخفاء كل المحتوى على الشاشات الصغيرة */
 @media (max-width: 1020px) {
-    body {
+    .wrapper {
         display: none;
     }
     .mobile-message {
         display: block;
         text-align: center;
         padding: 20px;
-        font-size: 1.2em;
+        font-size: 1.5em;
+        color: red;
     }
 }
 
-/* إظهار الرسالة فقط على الشاشات الصغيرة */
-.mobile-message {
-    display: none;
+/* إظهار المحتوى بشكل طبيعي على الشاشات الكبيرة */
+@media (min-width: 1020px) {
+    .mobile-message {
+        display: none;
+    }
 }
