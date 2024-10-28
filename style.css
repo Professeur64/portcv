@@ -253,21 +253,44 @@ body{
     
 }
 
+
+
+
 /* إخفاء كل المحتوى على الشاشات الصغيرة */
 @media (max-width: 1020px) {
     .wrapper {
         display: none;
     }
     .mobile-message {
-        display: block;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; /* تجعل البطاقة في منتصف الشاشة */
+        
+    }
+    
+    .message-card {
+        background-color: #fff;
+        padding: 20px 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         text-align: center;
-        padding: 20px;
+        max-width: 300px;
+    }
+    
+    .message-card h2 {
         font-size: 1.5em;
-        color: red;
+        color: #333;
+        margin: 0 0 10px;
+    }
+    
+    .message-card p {
+        font-size: 1em;
+        color: #666;
     }
 }
 
-/* إظهار المحتوى بشكل طبيعي على الشاشات الكبيرة */
+/* إخفاء الرسالة على الشاشات الكبيرة */
 @media (min-width: 1020px) {
     .mobile-message {
         display: none;
