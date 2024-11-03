@@ -32,6 +32,11 @@ body{
     min-height: 100vh;
     background: var(--bg-color);
     color: var(--text-color);
+    overflow: hidden;
+}
+
+p{
+    font-size:15px;
 }
 
 .wrapper{
@@ -39,7 +44,20 @@ body{
     width: 66rem;
     height: 45rem;
     padding: 2rem;
+    perspective: 250rem;
+    animation: show-animate 2s forwards;
 
+}
+
+@keyframes show-animate {
+  0%, 30% {
+    opacity: 0;
+    transform: rotate(-20deg);
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(0deg);
+  }
 }
 
 
@@ -60,8 +78,17 @@ body{
     z-index: -1;
 }
 
+.cover.cover-right{
+  z-index: 100;
+  transition: transform 1s cubic-bezier(.645, .045, .355, 1);
+
+}
+
+
+
 .cover.cover-right.turn{
     transform: rotateY(180deg);
+
 }
 
 .book{
@@ -69,6 +96,7 @@ body{
     width: 100%;
     height: 100%;
     display: flex;
+    perspective: 250rem;
 }
 
 .book .book-page {
@@ -81,6 +109,12 @@ body{
     padding: 2rem;
 
 }
+
+.book-page.page-left{
+  box-shadow: -.6rem .6rem .6rem rgba(0, 0, 0, .1);
+}
+
+
 
 .pofile-page{
     display: flex;
@@ -95,6 +129,12 @@ body{
     border-radius: 50%;
     border: .25rem solid var(--main-color);
     margin-bottom: .8rem;
+    transition: .8s ease;
+
+}
+
+.pofile-page:hover img {
+  transform: scale(1.1);
 
 }
 
@@ -184,7 +224,13 @@ body{
     position: absolute;
     right: 0;
     transform-style: preserve-3d;
+    transform-origin: left;
+    transition: transform 1s cubic-bezier(.645, .045, .355, 1);
     
+}
+
+.book-page.page-right.turn{
+    transform: rotateY(-180deg);
 }
 
 .book-page .page-front, 
@@ -226,6 +272,7 @@ body{
     margin-bottom: 1rem;
 }
 
+
 .workedu-box .workeduc-content::before {
     content: '';
     position: absolute;
@@ -236,6 +283,43 @@ body{
     background: var(--main-color);
     border-radius: 50%;
 }
+
+/* group renault */
+
+
+.workedu-box .workeduc-contentrenault{
+    position: relative;
+    padding-left: 1.6rem;
+    margin-bottom: 1rem;
+}
+
+
+.workedu-box .workeduc-contentrenault::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -0.65rem;
+    width: 1.2rem;
+    height: 1.2rem;
+    
+    border-radius: 50%;
+}
+
+.workeduc-contentrenault .tiri {
+    margin-left: 23px; 
+    margin-top: 10px; 
+    padding: 0;
+    
+}
+
+.workeduc-contentrenault .tiri {
+    margin-left: 23px; 
+    margin-top: 10px; 
+    padding: 0;
+    
+}
+
+/* group renault */
 
 
 .workeduc-content .year{
@@ -248,6 +332,21 @@ body{
     
 }
 
+
+.workeduc-content .tiri {
+    margin-left: 23px; 
+    margin-top: 10px; 
+    padding: 0;
+    
+}
+
+.workeduc-content .tiri {
+    margin-left: 23px; 
+    margin-top: 10px; 
+    padding: 0;
+    
+}
+
 .number-page{
     position: absolute;
     bottom: 1.2rem;
@@ -256,7 +355,39 @@ body{
     
 }
 
-/* butten videioة */
+.nextprev-btn{
+    position: absolute;
+    bottom: .9rem;
+    right: 1.5rem;
+    width: 2rem;
+    height: 2ren;
+    cursor: pointer;
+    font-size: 2rem;
+    color: var(--second-text-color);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    transition: .5s;
+}
+
+.nextprev-btn:hover{
+    color: var(--main-color);
+}
+
+.nextprev-btn.back{
+    left: 1.5rem;
+}
+
+.nextprev-btn:hover{
+    color: var(--main-color);
+}
+
+
+
+
+
+
+/* butten videoة */
 .btn-video{
     
     margin-bottom: 1rem;
@@ -301,7 +432,7 @@ button:hover{
 }
 
 .trailer video{
-	max-width: 430px;
+	max-width: 1000px;
 	outline: none;
 	position: relative;
 }
@@ -321,9 +452,639 @@ button:hover{
 	}
 }
 
-/* butten videioة */
+/* butten videoة */
 
 
+
+/*STELLANTIS زر عرض الصور  */
+
+#showPopupButton {
+    width: 100%;
+    padding: 7px;
+    border: var(--main-color);
+    cursor: pointer;
+    background: var(--main-color);
+    border: var(--border);
+    border-radius: .3rem;
+    font-size: 1rem;
+    color: var(--white-color);
+    font-weight: 500;
+    transition: .5s;
+  }
+  
+  #showPopupButton:hover {
+    background: white;
+    color: var(--main-color);
+  }
+  
+  .popup {
+    display: none; /* إخفاء النافذة المنبثقة افتراضيًا */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* خلفية داكنة مع شفافية */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .popup-content {
+    display: flex;
+    flex-direction: column; /* ترتيب المحتوى عموديًا */
+    align-items: center; /* مركز المحتوى */
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .popup img {
+    max-width: 650px; /* تحديد أقصى عرض للصورة */
+    max-height: 650px; /* تحديد أقصى ارتفاع للصورة */
+    width: 100%; /* جعل الصورة تأخذ عرض النافذة */
+    height: auto; /* الحفاظ على نسبة العرض إلى الارتفاع */
+    object-fit: contain; /* الحفاظ على نسبة العرض إلى الارتفاع */
+    border-radius: 0.3rem;
+  }
+  
+  .close-btn {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+  }
+  
+  .popup-buttons {
+    display: flex;
+    justify-content: space-between; /* توزيع الأزرار بين اليسار واليمين */
+    width: 100%;
+    margin-top: 10px; /* إضافة مساحة أعلى الأزرار */
+  }
+  
+  #prevButton{
+    padding: 10px 20px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 9.5rem;
+    height: 3rem;
+    background: #0087d7;
+    border: #0087d7;
+    border-radius: 0.3rem;
+    font-size: 1rem;
+    color: var(--white-color);
+    font-weight: 500;
+    margin: 0 1rem;
+    transition: 0.5s;
+    font-size: 14px;
+  }
+  
+  #prevButton:hover {
+    background: var(--main-color);
+    color: var(--white-color);
+  }
+  
+  #nextButton{
+    padding: 10px 20px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 9.5rem;
+    height: 3rem;
+    background: #0087d7;
+    border: #0087d7;
+    border-radius: 0.3rem;
+    font-size: 1rem;
+    color: var(--white-color);
+    font-weight: 500;
+    margin: 0 1rem;
+    transition: 0.5s;
+    font-size: 14px;
+  }
+  
+  #nextButton:hover {
+    background: var(--main-color);
+    color: var(--white-color);
+  }
+
+/* STELLANTIS زر عرض الصور  */
+
+
+/* OCP زر عرض الصور  */
+
+#showPopupButtonocp {
+    width: 100%;
+    padding: 7px;
+    border: var(--main-color);
+    cursor: pointer;
+    background: var(--main-color);
+    border: var(--border);
+    border-radius: .3rem;
+    font-size: 1rem;
+    color: var(--white-color);
+    font-weight: 500;
+    transition: .5s;
+    margin-bottom: 10px;
+  }
+  
+  #showPopupButtonocp:hover {
+    background: white;
+    color: var(--main-color);
+  }
+  
+  .popupocp {
+    display: none; /* إخفاء النافذة المنبثقة افتراضيًا */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* خلفية داكنة مع شفافية */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .popup-contentocp {
+    display: flex;
+    flex-direction: column; /* ترتيب المحتوى عموديًا */
+    align-items: center; /* مركز المحتوى */
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .popupocp img {
+    max-width: 650px; /* تحديد أقصى عرض للصورة */
+    max-height: 650px; /* تحديد أقصى ارتفاع للصورة */
+    width: 100%; /* جعل الصورة تأخذ عرض النافذة */
+    height: auto; /* الحفاظ على نسبة العرض إلى الارتفاع */
+    object-fit: contain; /* الحفاظ على نسبة العرض إلى الارتفاع */
+    border-radius: 0.3rem;
+  }
+  
+  .close-btnocp {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+  }
+  
+  .popup-buttonsocp {
+    display: flex;
+    justify-content: space-between; /* توزيع الأزرار بين اليسار واليمين */
+    width: 100%;
+    margin-top: 10px; /* إضافة مساحة أعلى الأزرار */
+  }
+  
+  #prevButtonocp{
+    padding: 10px 20px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 9.5rem;
+    height: 3rem;
+    background: #0087d7;
+    border: #0087d7;
+    border-radius: 0.3rem;
+    font-size: 1rem;
+    color: var(--white-color);
+    font-weight: 500;
+    margin: 0 1rem;
+    transition: 0.5s;
+    font-size: 14px;
+  }
+  
+  #prevButtonocp:hover {
+    background: var(--main-color);
+    color: var(--white-color);
+  }
+  
+  #nextButtonocp{
+    padding: 10px 20px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 9.5rem;
+    height: 3rem;
+    background: #0087d7;
+    border: #0087d7;
+    border-radius: 0.3rem;
+    font-size: 1rem;
+    color: var(--white-color);
+    font-weight: 500;
+    margin: 0 1rem;
+    transition: 0.5s;
+    font-size: 14px;
+  }
+  
+  #nextButtonocp:hover {
+    background: var(--main-color);
+    color: var(--white-color);
+  }
+
+/* OCP زر عرض الصور  */
+
+
+/* garage زر عرض الصور  */
+
+#showPopupButtongarage {
+    width: 100%;
+    padding: 7px;
+    border: var(--main-color);
+    cursor: pointer;
+    background: var(--main-color);
+    border: var(--border);
+    border-radius: .3rem;
+    font-size: 1rem;
+    color: var(--white-color);
+    font-weight: 500;
+    transition: .5s;
+    margin-bottom: 10px;
+  }
+  
+  #showPopupButtongarage:hover {
+    background: white;
+    color: var(--main-color);
+  }
+  
+  .popupgarage {
+    display: none; /* إخفاء النافذة المنبثقة افتراضيًا */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* خلفية داكنة مع شفافية */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .popup-contentgarage {
+    display: flex;
+    flex-direction: column; /* ترتيب المحتوى عموديًا */
+    align-items: center; /* مركز المحتوى */
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .popupgarage img {
+    max-width: 650px; /* تحديد أقصى عرض للصورة */
+    max-height: 650px; /* تحديد أقصى ارتفاع للصورة */
+    width: 100%; /* جعل الصورة تأخذ عرض النافذة */
+    height: auto; /* الحفاظ على نسبة العرض إلى الارتفاع */
+    object-fit: contain; /* الحفاظ على نسبة العرض إلى الارتفاع */
+    border-radius: 0.3rem;
+  }
+  
+  .close-btngarage {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+  }
+  
+  .popup-buttonsgarage {
+    display: flex;
+    justify-content: space-between; /* توزيع الأزرار بين اليسار واليمين */
+    width: 100%;
+    margin-top: 10px; /* إضافة مساحة أعلى الأزرار */
+  }
+  
+  #prevButtongarage{
+    padding: 10px 20px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 9.5rem;
+    height: 3rem;
+    background: #0087d7;
+    border: #0087d7;
+    border-radius: 0.3rem;
+    font-size: 1rem;
+    color: var(--white-color);
+    font-weight: 500;
+    margin: 0 1rem;
+    transition: 0.5s;
+    font-size: 14px;
+  }
+  
+  #prevButtongarage:hover {
+    background: var(--main-color);
+    color: var(--white-color);
+  }
+  
+  #nextButtongarage{
+    padding: 10px 20px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 9.5rem;
+    height: 3rem;
+    background: #0087d7;
+    border: #0087d7;
+    border-radius: 0.3rem;
+    font-size: 1rem;
+    color: var(--white-color);
+    font-weight: 500;
+    margin: 0 1rem;
+    transition: 0.5s;
+    font-size: 14px;
+  }
+  
+  #nextButtongarage:hover {
+    background: var(--main-color);
+    color: var(--white-color);
+  }
+
+/* garage زر عرض الصور  */
+
+
+/* ifmia زر عرض الصور  */
+
+#showPopupButtonifmia {
+  width: 100%;
+  padding: 7px;
+  border: var(--main-color);
+  cursor: pointer;
+  background: var(--main-color);
+  border: var(--border);
+  border-radius: .3rem;
+  font-size: 1rem;
+  color: var(--white-color);
+  font-weight: 500;
+  transition: .5s;
+  margin-bottom: 10px;
+}
+
+#showPopupButtonifmia:hover {
+  background: white;
+  color: var(--main-color);
+}
+
+.popupifmia {
+  display: none; /* إخفاء النافذة المنبثقة افتراضيًا */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8); /* خلفية داكنة مع شفافية */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-contentifmia {
+  display: flex;
+  flex-direction: column; /* ترتيب المحتوى عموديًا */
+  align-items: center; /* مركز المحتوى */
+  text-align: center;
+  padding: 20px;
+}
+
+.popupifmia img {
+  max-width: 650px; /* تحديد أقصى عرض للصورة */
+  max-height: 650px; /* تحديد أقصى ارتفاع للصورة */
+  width: 100%; /* جعل الصورة تأخذ عرض النافذة */
+  height: auto; /* الحفاظ على نسبة العرض إلى الارتفاع */
+  object-fit: contain; /* الحفاظ على نسبة العرض إلى الارتفاع */
+  border-radius: 0.3rem;
+}
+
+.close-btnifmia {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.popup-buttonsifmia {
+  display: flex;
+  justify-content: space-between; /* توزيع الأزرار بين اليسار واليمين */
+  width: 100%;
+  margin-top: 10px; /* إضافة مساحة أعلى الأزرار */
+}
+
+#prevButtonifmia{
+  padding: 10px 20px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 9.5rem;
+  height: 3rem;
+  background: #0087d7;
+  border: #0087d7;
+  border-radius: 0.3rem;
+  font-size: 1rem;
+  color: var(--white-color);
+  font-weight: 500;
+  margin: 0 1rem;
+  transition: 0.5s;
+  font-size: 14px;
+}
+
+#prevButtonifmia:hover {
+  background: var(--main-color);
+  color: var(--white-color);
+}
+
+#nextButtonifmia{
+  padding: 10px 20px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 9.5rem;
+  height: 3rem;
+  background: #0087d7;
+  border: #0087d7;
+  border-radius: 0.3rem;
+  font-size: 1rem;
+  color: var(--white-color);
+  font-weight: 500;
+  margin: 0 1rem;
+  transition: 0.5s;
+  font-size: 14px;
+}
+
+#nextButtonifmia:hover {
+  background: var(--main-color);
+  color: var(--white-color);
+}
+
+/* ifmia زر عرض الصور  */
+
+
+
+/* ista زر عرض الصور  */
+
+#showPopupButtonista {
+  width: 100%;
+  padding: 7px;
+  border: var(--main-color);
+  cursor: pointer;
+  background: var(--main-color);
+  border: var(--border);
+  border-radius: .3rem;
+  font-size: 1rem;
+  color: var(--white-color);
+  font-weight: 500;
+  transition: .5s;
+  margin-bottom: 10px;
+}
+
+#showPopupButtonista:hover {
+  background: white;
+  color: var(--main-color);
+}
+
+.popupista {
+  display: none; /* إخفاء النافذة المنبثقة افتراضيًا */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8); /* خلفية داكنة مع شفافية */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-contentista {
+  display: flex;
+  flex-direction: column; /* ترتيب المحتوى عموديًا */
+  align-items: center; /* مركز المحتوى */
+  text-align: center;
+  padding: 20px;
+}
+
+.popupista img {
+  max-width: 650px; /* تحديد أقصى عرض للصورة */
+  max-height: 650px; /* تحديد أقصى ارتفاع للصورة */
+  width: 100%; /* جعل الصورة تأخذ عرض النافذة */
+  height: auto; /* الحفاظ على نسبة العرض إلى الارتفاع */
+  object-fit: contain; /* الحفاظ على نسبة العرض إلى الارتفاع */
+  border-radius: 0.3rem;
+}
+
+.close-btnista {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.popup-buttonsista {
+  display: flex;
+  justify-content: space-between; /* توزيع الأزرار بين اليسار واليمين */
+  width: 100%;
+  margin-top: 10px; /* إضافة مساحة أعلى الأزرار */
+}
+
+#prevButtonista{
+  padding: 10px 20px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 9.5rem;
+  height: 3rem;
+  background: #0087d7;
+  border: #0087d7;
+  border-radius: 0.3rem;
+  font-size: 1rem;
+  color: var(--white-color);
+  font-weight: 500;
+  margin: 0 1rem;
+  transition: 0.5s;
+  font-size: 14px;
+}
+
+#prevButtonista:hover {
+  background: var(--main-color);
+  color: var(--white-color);
+}
+
+#nextButtonista{
+  padding: 10px 20px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 9.5rem;
+  height: 3rem;
+  background: #0087d7;
+  border: #0087d7;
+  border-radius: 0.3rem;
+  font-size: 1rem;
+  color: var(--white-color);
+  font-weight: 500;
+  margin: 0 1rem;
+  transition: 0.5s;
+  font-size: 14px;
+}
+
+#nextButtonista:hover {
+  background: var(--main-color);
+  color: var(--white-color);
+}
+
+/* ista زر عرض الصور  */
+
+
+.back-profile{
+  position: absolute;
+  bottom: 1.2rem;
+  right: 2rem;
+  width: 2rem;
+  height: 2rem;
+  background: transparent;
+  border: var(--border);
+  border-radius: .3rem;
+  font-size: 1.1erm;
+  color: var(--main-color);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  transition: .5s;
+
+}
+
+.back-profile:hover {
+  background: var(--main-color);
+  color: var(--white-color);
+  
+
+}
+
+.back-profile p {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%) scale(.5);
+  font-size: 1rem;
+  color: var(--main-color);
+  opacity: 0;
+  transition: .5s;
+
+}
+
+.back-profile:hover p {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+  top: -1.8rem;
+  
+
+}
 
 
 
