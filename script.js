@@ -348,20 +348,71 @@ const imagesgarage = [
 
 
   //butten video DEKRA
-  const button = document.querySelector("button");
-  const close = document.querySelector(".close");
-  const trailer = document.querySelector(".trailer");
-  const video = document.querySelector("video");
+  const button = document.querySelector(".btn-video button");
+        const close = document.querySelector(".close");
+        const trailer = document.querySelector(".trailer");
+        const iframe = document.getElementById("videoFrame");
 
-  button.addEventListener('click', ()=>{
-      trailer.style.visibility = "visible";
-      trailer.style.opacity = 1;
-  });
+        button.addEventListener('click', () => {
+            trailer.style.visibility = "visible";
+            trailer.style.opacity = 1;
+        });
 
-  close.addEventListener('click', ()=>{
-      trailer.style.visibility = "hidden";
-      trailer.style.opacity = 0;
+        // إخفاء نافذة الفيديو عند النقر على زر الإغلاق
+        close.addEventListener('click', () => {
+            trailer.style.visibility = "hidden";
+            trailer.style.opacity = 0;
 
-      video.pause();
-      video.currentTime = 0;
-  });
+            // إيقاف الفيديو باستخدام YouTube API
+            iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+        });
+
+        // إخفاء نافذة الفيديو عند النقر على خلفية النافذة
+        trailer.addEventListener('click', (event) => {
+            if (event.target === trailer) { // التأكد من أن النقر كان على الخلفية وليس على الفيديو
+                trailer.style.visibility = "hidden";
+                trailer.style.opacity = 0;
+                
+                // إيقاف الفيديو باستخدام YouTube API
+                iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+            }
+        });
+
+
+
+  //butten video DEKRA
+  // قائمة الفيديوهات
+const videos = ["https://cdn.group.renault.com/ren/master/renault-new-cars/editorial/e-tech/e-tech-ev/e-tech-evrenault-editorial-etech-ev-001-mp4-desktop-001.mp4.asset.mp4/f69807490d.mp4", "video2.mp4", "video3.mp4"];
+let currentVideoIndex = 0;
+
+// دالة لفتح النافذة المنبثقة
+function openPopuppost() {
+    document.querySelector('.popuppost').style.display = 'block';
+    document.querySelector('.overlay').style.display = 'block';
+    loadVideo();
+}
+
+// دالة لإغلاق النافذة المنبثقة
+function closePopuppost() {
+    document.querySelector('.popuppost').style.display = 'none';
+    document.querySelector('.overlay').style.display = 'none';
+}
+
+// دالة لتحميل الفيديو الحالي
+function loadVideo() {
+    const videoPlayer = document.getElementById("videoPlayer");
+    videoPlayer.src = videos[currentVideoIndex];
+    videoPlayer.load();
+}
+
+// دالة للانتقال إلى الفيديو التالي
+function nextVideo() {
+    currentVideoIndex = (currentVideoIndex + 1) % videos.length;
+    loadVideo();
+}
+
+// دالة للعودة إلى الفيديو السابق
+function prevVideo() {
+    currentVideoIndex = (currentVideoIndex - 1 + videos.length) % videos.length;
+    loadVideo();
+}
