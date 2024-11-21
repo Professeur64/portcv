@@ -47,7 +47,7 @@
 
                         <div class="btn-box">
                             <a href="#" class="btn">Download CV</a>
-                            <a href="#" class="btn contact-me">Contact Me</a> 
+                            <a href="#" id="showPopupButtoncontact" class="button-containercontact">Contact Me</a> 
                         </div>
                     </div>
                 </div>
@@ -441,6 +441,94 @@
 
 <!-- butten video Post -->
  
+
+
+<!-- contact زر عرض الصور -->
+<div class="popupcontact" id="popupcontact">
+  <span class="close-btncontact" id="closePopupButtoncontact">&times;</span>
+
+  <div class="container">
+    <div class="form">
+      <div class="contact-info">
+        <h3 class="titlecontact">Ihre Empfehlung ist ein Teil meines Erfolgs</h3>
+        <p class="text">
+          Vielen Dank, dass Sie meine Webseite besuchen. Wenn Sie Tipps oder Vorschläge haben, die mir helfen können, meine Chancen auf einen Ausbildungsplatz als Kfz-Mechatroniker zu verbessern, teilen Sie diese bitte über das Formular nebenan mit. Vielen Dank für Ihre Unterstützung!
+        </p>
+
+        <div class="info">
+          <div class="information">
+            <img src="images/location.png" class="icon" alt="" />
+            <p>92 Cherry Drive Uniondale, NY 11553</p>
+          </div>
+          <div class="information">
+            <img src="images/email.png" class="icon" alt="" />
+            <p>abderahmanebekkar@yahoo.com</p>
+          </div>
+          <div class="information">
+            <img src="images/phone.png" class="icon" alt="" />
+            <p>+212 658915881</p>
+          </div>
+        </div>
+
+        <!--<div class="social-mediacontact">
+          <p>Connect with us :</p>
+          <div class="social-icons">
+            <a href="#">
+              <i class="fab fa-facebook-f"></i>
+              <i class='bx bxl-linkedin' ></i>
+            </a>
+            <a href="#">
+              <i class="fab fa-twitter"></i>
+              <i class='bx bxl-twitter' ></i>
+            </a>
+             <a href="#">
+              <i class="fab fa-instagram"></i>
+              <i class='bx bxl-twitter' ></i>
+            </a>
+            <a href="https://www.linkedin.com/in/abderahmane-bekkar-aa6186225?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">
+              <i class="fab fa-linkedin-in"></i>
+              <i class='bx bxl-linkedin' ></i>
+            </a>
+          </div>
+        </div>-->
+      </div>
+
+      <div class="contact-form">
+        <span class="circle one"></span>
+        <span class="circle two"></span>
+
+        <form id="contactForm" method="post" action="https://api.sheetmonkey.io/form/mpgnPPy6m3TnRywMiPGPNe" autocomplete="off">
+          <h3 class="titlecontact">Kontaktieren Sie mich</h3>
+          <div class="input-container">
+            <input type="text" name="name" class="input" />
+            <label for="">Name</label>
+            <span>Name</span>
+          </div>
+          <div class="input-container">
+            <input type="email" name="email" class="input" />
+            <label for="">Email</label>
+            <span>Email</span>
+          </div>
+          <!--<div class="input-container">
+            <input type="text" name="subject" class="input" />
+            <label for="">Subject</label>
+            <span>Subject</span>
+          </div>-->
+          <div class="input-container textarea">
+            <textarea name="message" class="input"></textarea>
+            <label for="">Nachricht</label>
+            <span>Nachricht</span>
+          </div>
+          <input type="hidden" name="Created" value="x-sheetmonkey-current-date-time" />
+          <input type="submit" value="Senden" class="btncontact" />
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>
+<!--contact زر عرض الصور -->
+
 
         <script src="script.js"> </script>
 

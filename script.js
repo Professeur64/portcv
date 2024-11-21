@@ -416,3 +416,100 @@ function prevVideo() {
     currentVideoIndex = (currentVideoIndex - 1 + videos.length) % videos.length;
     loadVideo();
 }
+
+
+
+//contact زر عرض الصور 
+
+showPopupButtoncontact.addEventListener("click", () => {
+  popupcontact.style.display = "flex"; // عرض النافذة المنبثقة
+});
+
+closePopupButtoncontact.addEventListener("click", () => {
+  popupcontact.style.display = "none"; // إخفاء النافذة المنبثقة
+});
+
+
+// إغلاق النافذة المنبثقة عند النقر في أي مكان خارج الصورة
+popupcontact.addEventListener("click", (event) => {
+  if (event.target === popupcontact) {
+    popupcontact.style.display = "none"; // إخفاء النافذة المنبثقة
+  }
+});
+
+
+
+const inputs = document.querySelectorAll(".input");
+
+function focusFunc() {
+let parent = this.parentNode;
+parent.classList.add("focus");
+}
+
+function blurFunc() {
+let parent = this.parentNode;
+if (this.value == "") {
+  parent.classList.remove("focus");
+}
+}
+
+inputs.forEach((input) => {
+input.addEventListener("focus", focusFunc);
+input.addEventListener("blur", blurFunc);
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  const createdInput = document.querySelector('input[name="Created"]');
+  
+  // الحصول على التاريخ والوقت الحالي
+  const now = new Date();
+
+  // تحويل الوقت إلى التوقيت المحلي لألمانيا
+  const options = { timeZone: 'Europe/Berlin', hour12: false };
+  const formatter = new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Europe/Berlin',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+  });
+
+  // صيغة التاريخ والوقت النهائي
+  const formattedDate = formatter.format(now).replace(',', '').replace(/\//g, '-');
+
+  // تعيين القيمة
+  createdInput.value = formattedDate;
+});
+
+
+//contact زر عرض الصور 
+
+
+// منع الإرسال الافتراضي للنموذج
+
+document.getElementById('contactForm').addEventListener('submit', async function (event) {
+  event.preventDefault(); // منع الإرسال الافتراضي للنموذج
+
+  const form = event.target;
+  const formData = new FormData(form);
+
+  try {
+      const response = await fetch(form.action, {
+          method: form.method,
+          body: formData
+      });
+
+      if (response.ok) {
+          alert('Ihre Nachricht wurde erfolgreich gesendet. Vielen Dank für Ihre Zeit und Ihr Interesse!');
+          window.location.href = 'file:///Users/deutschland/Documents/Portfolio-book/index.html'; // إعادة التوجيه إلى الصفحة الرئيسية
+      } else {
+          alert('Entschuldigung, beim Absenden des Formulars ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.');
+      }
+  } catch (error) {
+      alert('An error occurred: ' + error.message);
+  }
+});
+
+// منع الإرسال الافتراضي للنموذج
