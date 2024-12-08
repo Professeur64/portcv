@@ -1490,7 +1490,7 @@ textarea.input {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      max-width: 600px; /* العرض الأقصى */
+      user-select: none;
       width: 100%;
       border-radius: 10px; /* زوايا دائرية */
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* ظل خفيف */
