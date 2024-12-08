@@ -1502,6 +1502,8 @@ textarea.input {
       justify-content: center;
       align-items: center;
       min-height: 100vh;
+      max-height: 80vh; /* الحد الأقصى للارتفاع */
+        overflow-y: auto; /* تفعيل السكرول */
     }
 
     .message-card {
@@ -1514,8 +1516,7 @@ textarea.input {
         opacity: 0; /* يبدأ غير مرئي */
         transform: scale(0.8); /* يبدأ صغير الحجم */
         animation: fadeInScale 0.5s forwards; /* تفعيل الأنيميشن */
-        max-height: 90vh; /* الحد الأقصى للارتفاع */
-        overflow-y: auto; /* تفعيل السكرول */
+        
         
     }
 
