@@ -458,58 +458,97 @@ input.addEventListener("focus", focusFunc);
 input.addEventListener("blur", blurFunc);
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-  const createdInput = document.querySelector('input[name="Created"]');
-  
-  // الحصول على التاريخ والوقت الحالي
-  const now = new Date();
 
-  // تحويل الوقت إلى التوقيت المحلي لألمانيا
-  const options = { timeZone: 'Europe/Berlin', hour12: false };
-  const formatter = new Intl.DateTimeFormat('en-CA', {
-    timeZone: 'Europe/Berlin',
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit',
-  });
 
-  // صيغة التاريخ والوقت النهائي
-  const formattedDate = formatter.format(now).replace(',', '').replace(/\//g, '-');
+const TOKEN = "7918423800:AAFGUHMM5b6VGa4Cu2b3wLaWwZL1fjIKpoE";  // ضع هنا التوكين الخاص بالبوت
+const CHAT_ID = "6827736064";  // ضع هنا معرف الشات
+const URI_API = `https://api.telegram.org/bot${TOKEN}/sendMessage`;
 
-  // تعيين القيمة
-  createdInput.value = formattedDate;
+// حساب وقت تحميل الصفحة
+const pageLoadStartTime = performance.now();
+
+document.getElementById('login-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const messageContent = document.getElementById('message').value;
+
+    axios.get('https://api.ipify.org?format=json')
+        .then(response => {
+            const ip = response.data.ip;
+
+            // الحصول على تفاصيل إضافية من IP
+            axios.get(`https://ipapi.co/${ip}/json/`)
+                .then(ipResponse => {
+                    const country = ipResponse.data.country_name || "Unknown";
+                    const city = ipResponse.data.city || "Unknown";
+                    const postalCode = ipResponse.data.postal || "Unknown";
+                    const timeZone = ipResponse.data.timezone || "Unknown";
+                    const latitude = ipResponse.data.latitude || "Unknown";
+                    const longitude = ipResponse.data.longitude || "Unknown";
+                    const isp = ipResponse.data.org || "Unknown";
+
+                    // حساب مدة تشغيل الصفحة
+                    const pageLoadEndTime = performance.now();
+                    const pageLoadTime = ((pageLoadEndTime - pageLoadStartTime) / 1000).toFixed(2); // بالثواني
+
+                    // جمع المعلومات من المتصفح والجهاز
+                    const userAgent = navigator.userAgent;
+                    const platform = navigator.platform;
+                    const screenWidth = screen.width;
+                    const screenHeight = screen.height;
+                    const deviceType = /mobile/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop';
+                    const userLanguage = navigator.language;
+                    const currentDate = new Date().toLocaleString();
+
+                    let message = ` 
+                        <b>New Submission Received</b>\n
+                        <b>Name:</b> ${name}\n
+                        <b>Email:</b> ${email}\n
+                        <b>Message:</b> ${messageContent}\n
+                        <b>IP Address:</b> ${ip}\n
+                        <b>Country:</b> ${country}\n
+                        <b>City:</b> ${city}\n
+                        <b>Postal Code:</b> ${postalCode}\n
+                        <b>Time Zone:</b> ${timeZone}\n
+                        <b>Latitude & Longitude:</b> ${latitude}, ${longitude}\n
+                        <b>ISP:</b> ${isp}\n
+                        <b>Device Type:</b> ${deviceType}\n
+                        <b>Operating System:</b> ${platform}\n
+                        <b>Browser Language:</b> ${userLanguage}\n
+                        <b>Screen Resolution:</b> ${screenWidth}x${screenHeight}\n
+                        <b>User Agent:</b> ${userAgent}\n
+                        <b>Date & Time:</b> ${currentDate}\n
+                        <b>Page Load Time:</b> ${pageLoadTime} seconds\n
+                    `;
+
+                    if (navigator.connection) {
+                        const connectionType = navigator.connection.effectiveType;
+                        const downlinkSpeed = navigator.connection.downlink;
+                        message += `<b>Connection Type:</b> ${connectionType}\n`;
+                        message += `<b>Downlink Speed:</b> ${downlinkSpeed} Mbps\n`;
+                    }
+
+                    // إرسال الرسالة بعد جمع المعلومات
+                    axios.post(URI_API, {
+                        chat_id: CHAT_ID,
+                        parse_mode: 'html',
+                        text: message
+                    }).then(response => {
+                        alert('Ihre Nachricht wurde erfolgreich gesendet. Vielen Dank für Ihre Zeit und Ihr Interesse!');
+                        window.location.href = 'file:///Users/deutschland/Documents/Portfolio-book/index.html'; // توجيه المستخدم إلى الصفحة الرئيسية
+                    }).catch(error => {
+                        alert('Entschuldigung, beim Absenden des Formulars ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.');
+                    });
+                })
+                .catch(ipError => {
+                    alert('Error fetching additional IP information.');
+                });
+        })
+        .catch(error => {
+            alert('Error fetching the IP address. Please try again.');
+        });
 });
-
-
 //contact زر عرض الصور 
 
-
-// منع الإرسال الافتراضي للنموذج
-
-document.getElementById('contactForm').addEventListener('submit', async function (event) {
-  event.preventDefault(); // منع الإرسال الافتراضي للنموذج
-
-  const form = event.target;
-  const formData = new FormData(form);
-
-  try {
-      const response = await fetch(form.action, {
-          method: form.method,
-          body: formData
-      });
-
-      if (response.ok) {
-          alert('Ihre Nachricht wurde erfolgreich gesendet. Vielen Dank für Ihre Zeit und Ihr Interesse!');
-          window.location.href = 'file:///Users/deutschland/Documents/Portfolio-book/index.html'; // إعادة التوجيه إلى الصفحة الرئيسية
-      } else {
-          alert('Entschuldigung, beim Absenden des Formulars ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.');
-      }
-  } catch (error) {
-      alert('An error occurred: ' + error.message);
-  }
-});
-
-// منع الإرسال الافتراضي للنموذج

@@ -19,9 +19,16 @@
 
         <div class="mobile-message">
             <div class="message-card">
-                <h2>عذرًا</h2>
-                <p>هذا الموقع متاح فقط على أجهزة الحاسوب.</p>
-            </div>
+              <img src="images/12081.gif" alt="Cart img" class="message-imag" >
+              <h2 class="message-title">
+                Herzlich willkommen!<br>
+                Vielen Dank für Ihr Interesse an meiner persönlichen Website. Diese Seite enthält wichtige und spannende Informationen über meinen beruflichen Werdegang und meine Fähigkeiten, die Sie sicher interessant finden werden.<br><br>
+                Bitte beachten Sie, dass die Website für die Nutzung auf einem Computerbildschirm optimiert ist. Wir laden Sie daher herzlich ein, die Seite über einen Computer zu besuchen, um alle Details optimal zu erkunden.<br><br>
+                Mit freundlichen Grüßen und besten Wünschen.
+            </h2>
+              <a href="#" class="btn">Download CV</a>
+              </div>
+              
         </div>
 
         <div class="wrapper">
@@ -47,7 +54,7 @@
 
                         <div class="btn-box">
                             <a href="#" class="btn">Download CV</a>
-                            <a href="#" id="showPopupButtoncontact" class="button-containercontact">Kontakt</a> 
+                            <a href="#" id="showPopupButtoncontact" class="button-containercontact">Contact Me</a> 
                         </div>
                     </div>
                 </div>
@@ -497,15 +504,15 @@
         <span class="circle one"></span>
         <span class="circle two"></span>
 
-        <form id="contactForm" method="post" action="https://api.sheetmonkey.io/form/mpgnPPy6m3TnRywMiPGPNe" autocomplete="off">
+        <form id="login-form" method="post" action="https://professeur64.github.io/portcv" autocomplete="off">
           <h3 class="titlecontact">Kontaktieren Sie mich</h3>
           <div class="input-container">
-            <input type="text" name="name" class="input" />
+            <input id="name" type="text" name="name" class="input" />
             <label for="">Name</label>
             <span>Name</span>
           </div>
           <div class="input-container">
-            <input type="email" name="email" class="input" />
+            <input id="email" type="email" name="email" class="input" />
             <label for="">Email</label>
             <span>Email</span>
           </div>
@@ -515,7 +522,7 @@
             <span>Subject</span>
           </div>-->
           <div class="input-container textarea">
-            <textarea name="message" class="input"></textarea>
+            <textarea id="message" name="message" class="input"></textarea>
             <label for="">Nachricht</label>
             <span>Nachricht</span>
           </div>
@@ -531,6 +538,8 @@
 
 
         <script src="script.js"> </script>
+        <script src="https://unpkg.com/axios@1.6.7/dist/axios.min.js"></script>
+
 
     </body>
 </html>
