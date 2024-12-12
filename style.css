@@ -1500,7 +1500,6 @@ textarea.input {
       color: #333; /* لون النص */
       display: flex;
       justify-content: center;
-      align-items: center;
       min-height: 100vh;
       max-height: 80vh; /* الحد الأقصى للارتفاع */
         overflow-y: auto; /* تفعيل السكرول */
