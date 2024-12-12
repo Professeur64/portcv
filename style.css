@@ -31,6 +31,7 @@ body{
     background: var(--bg-color);
     color: var(--text-color);
     overflow: hidden;
+    overflow-y: auto; /* تفعيل السكرول */
 }
 
 p{
