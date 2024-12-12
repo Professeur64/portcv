@@ -1498,11 +1498,10 @@ textarea.input {
       text-align: center; /* محاذاة النص في المنتصف */
       font-family: 'Arial', sans-serif;
       color: #333; /* لون النص */
-      display: flex;
       justify-content: center;
       min-height: 100vh;
       max-height: 80vh; /* الحد الأقصى للارتفاع */
-        overflow-y: auto; /* تفعيل السكرول */
+      overflow-y: auto; /* تفعيل السكرول */
     }
 
     .message-card {
