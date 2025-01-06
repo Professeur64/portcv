@@ -150,7 +150,7 @@ const images = [
 
 // OCP زر عرض الصور 
 const imagesocp = [
-    "https://cdn.group.renault.com/ren/master/renault-new-cars/editorial/after-sales/maintenance/aftersales-maintenance-001.jpg.ximg.large.webp/d956adc0d3.webp",
+    "ocp-1.webp",
     "https://cdn.group.renault.com/ren/master/renault-new-cars/editorial/after-sales/maintenance/aftersales-maintenance-002.jpg.ximg.large.webp/2ea69bde07.webp",
     "https://cdn.group.renault.com/ren/master/renault-new-cars/editorial/e-tech/e-tech-ev/renault-editorial-etech-ev-058.jpg.ximg.large.webp/8e4e0971eb.webp",
     "https://cdn.group.renault.com/ren/master/renault-new-cars/editorial/after-sales/maintenance/aftersales-maintenance-003.jpg.ximg.large.webp/7345f8ef10.webp",
